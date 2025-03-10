@@ -40,7 +40,6 @@ dependencies:
   dio: ^5.8.0+1
   flutter_dotenv: ^5.2.1
   shared_preferences: ^2.5.2
-  toastification: ^3.0.1
 
 dev_dependencies:
   flutter_test:
