@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:sample/domain/entities/user/user.dart';
-import 'package:sample/domain/usecases/user/user_use_case.dart';
+import 'package:sample/domain/usecases/user/get_users.dart';
 
 class UserControllers extends GetxController{
-  final UserUseCase userUseCase;
+  final GetUsers getUsers;
 
-  UserControllers(this.userUseCase);
+  UserControllers(this.getUsers);
 
   var users = <User>[].obs;
   var isLoading = false.obs;
@@ -20,7 +20,7 @@ class UserControllers extends GetxController{
   void fetchUsers() async {
     isLoading(true);
     try {
-      users.value = await userUseCase();
+      users.value = await getUsers();
     } catch (e) {
       errorMessage(e.toString());
     } finally {
