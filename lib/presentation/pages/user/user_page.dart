@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sample/core/helpers/snackbar/snackbar_helper.dart';
 import 'package:sample/presentation/controllers/user/user_controllers.dart';
 
 class UserPage extends StatelessWidget {
@@ -19,7 +20,7 @@ class UserPage extends StatelessWidget {
         }
 
         if (userControllers.errorMessage.isNotEmpty) {
-          return Center(child: Text(userControllers.errorMessage.value));
+          Future.microtask(() => SnackbarHelper.showError(userControllers.errorMessage.value));
         }
 
         return ListView.builder(

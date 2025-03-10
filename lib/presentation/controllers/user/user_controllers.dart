@@ -18,8 +18,10 @@ class UserControllers extends GetxController{
   }
 
   void fetchUsers() async {
-    isLoading(true);
     try {
+      isLoading(true);
+      errorMessage('');
+      
       users.value = await getUsers();
     } catch (e) {
       errorMessage(e.toString());

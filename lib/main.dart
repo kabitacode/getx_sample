@@ -4,14 +4,16 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:sample/presentation/routes/routes.dart';
 
 void main() async{
- WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
+ WidgetsFlutterBinding.ensureInitialized(); 
+
+
   try {
-    await dotenv.load(fileName: ".env"); // Load environment variables
+    await dotenv.load(fileName: ".env"); 
   } catch (e) {
-    throw Exception('Error loading .env file: $e'); // Print error if any
+    throw Exception('Error loading .env file: $e');
   }
   var initialRoute = await Routes.initialRoute;
-  runApp(MyApp(initialRoute)); // Runs the app
+  runApp(MyApp(initialRoute));
 }
 
 class MyApp extends StatelessWidget {
