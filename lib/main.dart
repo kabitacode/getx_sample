@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:sample/presentation/pages/user/user_page.dart';
+import 'package:sample/presentation/routes/routes.dart';
 
 void main() async{
-  await dotenv.load(fileName: ".env");
-  runApp(MyApp());
+ WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
+  try {
+    await dotenv.load(fileName: ".env"); // Load environment variables
+  } catch (e) {
+    throw Exception('Error loading .env file: $e'); // Print error if any
+  }
+  var initialRoute = await Routes.initialRoute;
+  runApp(MyApp(initialRoute)); // Runs the app
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+  MyApp(this.initialRoute);
 
   @override
   Widget build(BuildContext context) {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: UserPage(),
+        initialRoute: initialRoute,
+        getPages: Navigation.routes,
       );
   }
 }
